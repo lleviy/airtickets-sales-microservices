@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: native
+    cloud:
+      config:
+        server:
+          native:
+            searchLocations:
+              - classpath:/
+
+server:
+  port: 3030
