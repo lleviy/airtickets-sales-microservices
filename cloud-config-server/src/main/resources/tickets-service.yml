@@ -4,11 +4,11 @@ spring:
   cloud:
     stream:
       bindings:
-        output:
-          destination: ticketOrderedInput
+        sendTicketOrder-out-0:
+          destination: ticketOrderedTopic
           contentType: application/json
           binder: local_rabbit
-        input:
+        getPaymentStatus-in-0:
           destination: paymentSuccessInput
           contentType: application/json
           binder: local_rabbit

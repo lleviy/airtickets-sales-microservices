@@ -5,7 +5,7 @@ import com.airticketssales.ticketsservice.domain.Ticket;
 import com.airticketssales.ticketsservice.domain.TicketStatuses;
 import com.airticketssales.ticketsservice.dto.OrderDto;
 import com.airticketssales.ticketsservice.dto.TicketPurchaseDto;
-import com.airticketssales.ticketsservice.event.source.SourceBean;
+import com.airticketssales.ticketsservice.event.source.Source;
 import com.airticketssales.ticketsservice.repository.PassengerRepository;
 import com.airticketssales.ticketsservice.repository.TicketRepository;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,12 @@ public class TicketServiceImpl implements TicketService{
     private final TicketRepository ticketRepository;
     private PassengerRepository passengerRepository;
 
-    private SourceBean sourceBean;
+    private Source source;
 
-    public TicketServiceImpl(TicketRepository ticketRepository, PassengerRepository passengerRepository, SourceBean sourceBean) {
+    public TicketServiceImpl(TicketRepository ticketRepository, PassengerRepository passengerRepository, Source source) {
         this.ticketRepository = ticketRepository;
         this.passengerRepository = passengerRepository;
-        this.sourceBean = sourceBean;
+        this.source = source;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class TicketServiceImpl implements TicketService{
             passengerRepository.save(passenger);
             ticketRepository.save(ticket);
         }
-        sourceBean.sendTicketOrder(ticketsIds, orderDto.getCustomerName(), orderDto.getCardNo(), cost);
+        source.sendTicketOrder(ticketsIds, orderDto.getCustomerName(), orderDto.getCardNo(), cost);
     }
 
     public void confirmTicketsPurchase(){

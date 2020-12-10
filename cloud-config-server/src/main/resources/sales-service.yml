@@ -3,16 +3,12 @@ spring:
     name: sales-service
   cloud:
     stream:
-#      bindings:
-#        output-out-0:
-#          destination: ticketChangeTopic
-#          binder: local_rabbit
       bindings:
-        input:
-          destination: ticketOrderedInput
+        getTicketOrder-in-0:
+          destination: ticketOrderedTopic
           contentType: application/json
           binder: local_rabbit
-        output:
+        publishPaymentSuccess-out-0:
           destination: paymentSuccessInput
           contentType: application/json
           binder: local_rabbit
