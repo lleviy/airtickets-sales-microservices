@@ -1,6 +1,5 @@
 package com.airticketssales.salesservice.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -21,16 +20,27 @@ public class Payment {
 
     private Double amount;
 
+    private PaymentStatuses status;
+
     @CreatedDate
     private LocalDateTime paymentDate;
 
     public Payment() {
     }
 
-    public Payment(CreditCardDetails customer, List<Long> ticketsIds, Double amount) {
+    public Payment(CreditCardDetails customer, List<Long> ticketsIds, Double amount, PaymentStatuses status) {
         this.customer = customer;
         this.ticketsIds = ticketsIds;
         this.amount = amount;
+        this.status = status;
+    }
+
+    public PaymentStatuses getStatus() {
+        return status;
+    }
+
+    public void setStatus(PaymentStatuses status) {
+        this.status = status;
     }
 
     public Long getId() {

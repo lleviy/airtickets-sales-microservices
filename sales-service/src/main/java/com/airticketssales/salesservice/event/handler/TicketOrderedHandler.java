@@ -19,9 +19,9 @@ public class TicketOrderedHandler {
         this.paymentService = paymentService;
     }
 
-//    @StreamListener(Processor.INPUT)
-//    public void getTicketOrder(TicketsOrderModel ticketsOrderModel){
-//        logger.info("Get ticket order");
-//        paymentService.addPaymentRecord(ticketsOrderModel);
-//    }
+    @StreamListener(Processor.INPUT)
+    public void getTicketOrder(TicketsOrderModel ticketsOrderModel){
+        logger.info("Get ticket order");
+        paymentService.addPaymentRecord(ticketsOrderModel);
+    }
 }

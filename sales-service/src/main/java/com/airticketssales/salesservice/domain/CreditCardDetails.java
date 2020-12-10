@@ -8,12 +8,9 @@ import javax.persistence.Id;
 @Entity
 public class CreditCardDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String number;
 
     private String name;
-
-    private String number;
 
     public CreditCardDetails() {
     }
@@ -21,14 +18,6 @@ public class CreditCardDetails {
     public CreditCardDetails(String name, String number) {
         this.name = name;
         this.number = number;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

@@ -3,10 +3,6 @@ spring:
     name: tickets-service
   cloud:
     stream:
-#      bindings:
-#        output-out-0:
-#          destination: ticketChangeTopic
-#          binder: local_rabbit
       bindings:
         output:
           destination: ticketOrderedInput

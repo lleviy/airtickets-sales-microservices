@@ -2,6 +2,7 @@ package com.airticketssales.salesservice.service;
 
 import com.airticketssales.salesservice.domain.CreditCardDetails;
 import com.airticketssales.salesservice.domain.Payment;
+import com.airticketssales.salesservice.domain.PaymentStatuses;
 import com.airticketssales.salesservice.event.model.TicketsOrderModel;
 import com.airticketssales.salesservice.event.source.PaymentSuccessSource;
 import com.airticketssales.salesservice.repository.CreditCardDetailsRepository;
@@ -23,10 +24,10 @@ public class PaymentServiceImpl implements PaymentService{
     @Override
     public void addPaymentRecord(TicketsOrderModel ticketsOrderModel) {
         CreditCardDetails creditCardDetails = new CreditCardDetails(ticketsOrderModel.getName(), ticketsOrderModel.getCardNo());
-        Payment payment = new Payment(creditCardDetails, ticketsOrderModel.getTicketsIds(), ticketsOrderModel.getCost());
+        Payment payment = new Payment(creditCardDetails, ticketsOrderModel.getTicketsIds(), ticketsOrderModel.getCost(), PaymentStatuses.SUCCESS);
         creditCardDetailsRepository.save(creditCardDetails);
         paymentRepository.save(payment);
 
-        paymentSuccessSource.publishPaymentSuccess("SUCCESS", ticketsOrderModel.getTicketsIds());
+        paymentSuccessSource.publishPaymentSuccess(PaymentStatuses.SUCCESS.toString(), ticketsOrderModel.getTicketsIds());
     }
 }

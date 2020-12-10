@@ -4,14 +4,12 @@ package com.airticketssales.ticketsservice.controller;
 import com.airticketssales.ticketsservice.domain.Ticket;
 import com.airticketssales.ticketsservice.dto.OrderDto;
 import com.airticketssales.ticketsservice.service.TicketService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("tickets")
 public class TicketsController {
     private TicketService ticketService;
 
